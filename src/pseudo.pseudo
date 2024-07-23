@@ -1,0 +1,37 @@
+// Registration Page
+- Display registration form
+- On form submit, validate input
+- Save user details to local storage
+
+// Login Page
+- Display login form
+- On form submit, validate input
+- Check credentials against stored user details
+- Redirect to Home Page if successful
+
+// Home Page
+- Display list of tasks
+- Allow adding a new task
+  - Show task form
+  - On form submit, validate input
+  - Save task to local storage
+- Allow updating a task
+  - Show task form with pre-filled data
+  - On form submit, update task in local storage
+- Allow deleting a task
+  - Confirm deletion
+  - Remove task from local storage
+- Allow marking a task as completed
+  - Update task status in local storage
+- Allow filtering tasks
+  - By due date
+  - By priority
+  - By status
+
+// Profile Page
+- Display user details
+- Allow updating user details
+  - Show user form with pre-filled data
+  - On form submit, validate input
+  - Update user details in local storage
+  

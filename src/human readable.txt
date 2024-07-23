@@ -1,0 +1,24 @@
+Registration Page
+Create a registration form with fields: username, email, password.
+On form submission, validate that all fields are filled.
+Store user details in local storage.
+
+Login Page
+Create a login form with fields: username, password.
+On form submission, validate that fields are filled.
+Check credentials against stored user details.
+If credentials are valid, redirect to the Home Page.
+
+Home Page
+Display a list of tasks.
+Provide a form to add a new task with fields: task name, task definition, task priority (High, Medium, Low), task status, task due date.
+On form submission, validate that fields are filled and store the task in local storage.
+Allow users to update a task by editing the form with pre-filled data and saving changes to local storage.
+Allow users to delete a task with a confirmation prompt.
+Allow users to mark a task as completed, updating the task status in local storage.
+Provide filters to view tasks by due date, priority, and status (Incomplete, Complete).
+
+Profile Page
+Display user details.
+Provide a form to update user details with pre-filled data.
+On form submission, validate fields and update user details in local storage.
