@@ -43,6 +43,8 @@ const TaskFilter = ({ onFilterChange }) => {
           </select>
         </label>
         <label className={styles.label}>
+            <br></br>
+            <br></br>
           Due Date Start:
           <input
             className={styles.input}

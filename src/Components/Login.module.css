@@ -1,6 +1,6 @@
-/* src/components/Login.module.css */
+
 .container {
-    background: linear-gradient(135deg, #4c79ff, #1c3b70);
+    background:#4c79ff;
     padding: 40px 20px;
     border-radius: 10px;
     color: #fff;

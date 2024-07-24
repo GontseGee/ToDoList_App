@@ -15,18 +15,24 @@
     margin-bottom: 20px;
   }
   
-  .filterGroup {
+  .form {
     display: flex;
     flex-direction: column;
   }
   
-  .filterGroup label {
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
   }
   
-  .filterGroup select {
+  .inputGroup input,
+  .inputGroup textarea,
+  .inputGroup select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -34,8 +40,12 @@
     box-sizing: border-box;
   }
   
-  .applyButton {
-    background-color: #28a745;
+  .inputGroup textarea {
+    height: 100px;
+  }
+  
+  .submitButton {
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
@@ -43,11 +53,10 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s;
-    margin-top: 10px;
   }
   
-  .applyButton:hover {
-    background-color: #218838;
+  .submitButton:hover {
+    background-color: #0056b3;
   }
   
   /* Responsive design */
@@ -60,7 +69,7 @@
       font-size: 1.2rem;
     }
   
-    .applyButton {
+    .submitButton {
       font-size: 0.9rem;
     }
   }

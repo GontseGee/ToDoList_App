@@ -2,23 +2,34 @@
 
 .App {
   font-family: Arial, sans-serif;
-  background-color:#00BBF9;
+  text-align: center;
+}
+
+body {
+  background-color:#4c79ff; 
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 .navbar {
-  background-color: #3F2E56;
-  color: #F65BE3;
+  display: flex;
+  justify-content: center;
+ 
   padding: 10px;
 }
 
-.navbar nav a {
-  color: #F65BE3;
+.navbar a {
+  color: white;
   text-decoration: none;
-  margin: 0 10px;
+  padding: 14px 20px;
+  font-size: 16px;
+  display: inline-block;
 }
 
-.navbar nav a:hover {
-  text-decoration: underline;
+.navbar a:hover {
+  background-color: #575757;
+  border-radius: 4px;
 }
 
 
@@ -36,4 +47,23 @@ button:hover {
   background-color: #0056b3;
 }
 
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #3F2E56;
+}
+
+h2 {
+  text-align: center;
+  color: black;
+  margin-bottom: 20px;
+}
+.container {
+  padding: 20px;
+  background-color:#3F2E56;
+}
 

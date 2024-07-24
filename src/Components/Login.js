@@ -4,6 +4,7 @@ import {Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const Login = ({ onLogin }) => {
+  const [email,setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -32,6 +33,16 @@ const Login = ({ onLogin }) => {
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
             required
+          />
+        </div>
+        <div>
+          <label>Email</label>
+          <input 
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='email'
+          required
           />
         </div>
         <div>

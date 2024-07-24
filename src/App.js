@@ -4,6 +4,8 @@ import Registration from './Components/Registration';
 import Login from './Components/login';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
+import './App.css';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
