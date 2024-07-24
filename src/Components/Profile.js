@@ -2,44 +2,85 @@ import React, { useState,useEffect } from 'react';
 import styles from './Profile.module.css';
 import { getFromLocalStorage, setToLocalStorage } from '../LocalStorage';
 
-
 const Profile = () => {
-  const [user, setUser] = useState(getFromLocalStorage('user') || {});
-  const [profilePicture, setProfilePicture] = useState(user.profilePicture || '');
+  const [profile, setProfile] = useState({});
+  const [completedTasks, setCompletedTasks] = useState([]);
 
-  const handleFileChange = (e) => {
+  useEffect(() => {
+    const storedProfile = getFromLocalStorage('user') || {};
+    const storedTasks = getFromLocalStorage('tasks') || [];
+    setProfile(storedProfile);
+    setCompletedTasks(storedTasks.filter(task => task.status === 'Complete'));
+  }, []);
+
+  const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfilePicture(imageUrl);
-      setUser((prevUser) => ({ ...prevUser, profilePicture: imageUrl }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const updatedProfile = { ...profile, profilePicture: reader.result };
+        setProfile(updatedProfile);
+        setToLocalStorage('user', updatedProfile);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  useEffect(() => {
-    setToLocalStorage('user', user);
-  }, [user]);
+  const getPriorityColor = (priority) => {
+    switch (priority) {
+      case 'High':
+        return 'red'; 
+      case 'Medium':
+        return 'orange'; 
+      case 'Low':
+        return 'green'; // or any color you use for low priority
+      default:
+        return 'gray'; // default color if priority is unknown
+    }
+  };
 
   return (
-    <div className={styles.profileContainer}>
-      <h2>Profile Page</h2>
+    <div className={styles.container}>
+      <h2>Profile</h2>
       <div className={styles.profilePictureContainer}>
-        {profilePicture && (
-          <img src={profilePicture} alt="Profile" className={styles.profilePicture} />
+        {profile.profilePicture ? (
+          <img src={profile.profilePicture} alt="Profile" className={styles.profilePicture} />
+        ) : (
+          <div className={styles.noProfilePicture}>No Profile Picture</div>
         )}
-        <label htmlFor="fileInput" className={styles.cameraIcon}>
-          📷
+        <label htmlFor="profilePictureUpload" className={styles.uploadLabel}>
+          <span className={styles.cameraIcon}>📷</span>
+          <input
+            id="profilePictureUpload"
+            type="file"
+            accept="image/*"
+            onChange={handleProfilePictureChange}
+            className={styles.uploadInput}
+          />
         </label>
-        <input
-          type="file"
-          id="fileInput"
-          className={styles.fileInput}
-          onChange={handleFileChange}
-          style={{ display: profilePicture ? 'none' : 'block' }}
-        />
       </div>
-      <p>Username: {user.username}</p>
-      <p>Email: {user.email}</p>
+      <div className={styles.profileInfo}>
+        <p><strong>Username:</strong> {profile.username}</p>
+        <p><strong>Email:</strong> {profile.email}</p>
+      </div>
+      <div className={styles.completedTasks}>
+        <h3>Completed Tasks</h3>
+        {completedTasks.length > 0 ? (
+          <ul>
+            {completedTasks.map((task, index) => (
+              <li key={index} className={styles.taskCard} style={{ borderLeft: `5px solid ${getPriorityColor(task.priority)}` }}>
+                <p><strong>Task:</strong> {task.name}</p>
+                <p><strong>Description:</strong> {task.description}</p>
+                <p><strong>Due Date:</strong> {task.dueDate}</p>
+                <p><strong>Priority:</strong> {task.priority}</p>
+                <p><strong>Status:</strong> {task.status}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No completed tasks</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,14 +1,11 @@
-
 .container {
     padding: 20px;
-    text-align: center;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4; /* Or any background color you want */
   }
   
   .profilePictureContainer {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   
   .profilePicture {
@@ -16,30 +13,112 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ddd;
+   
   }
   
-  .placeholder {
+  .noProfilePicture {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: 1rem;
+  }
+  
+  .uploadLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
   
   .cameraIcon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     font-size: 24px;
-    color: #555;
   }
   
-  .userInfo {
+  .uploadInput {
+    display: none;
+  }
+  
+  .profileInfo {
     margin-top: 20px;
   }
+  
+  .completedTasks {
+    margin-top: 20px;
+  }
+  
+  .taskCard {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color:white;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   

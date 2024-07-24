@@ -5,10 +5,8 @@ import TaskList from './TaskList';
 import TaskFilter from './TaskFilter';
 import styles from './Home.module.css';
 
-
 const Home = () => {
   const [tasks, setTasks] = useState([]);
-  const [taskToEdit, setTaskToEdit] = useState(null);
 
   useEffect(() => {
     const storedTasks = getFromLocalStorage('tasks') || [];
@@ -20,15 +18,7 @@ const Home = () => {
   }, [tasks]);
 
   const addTask = (task) => {
-    if (taskToEdit !== null) {
-      const updatedTasks = tasks.map((t, index) =>
-        index === taskToEdit.index ? task : t
-      );
-      setTasks(updatedTasks);
-      setTaskToEdit(null);
-    } else {
-      setTasks([...tasks, task]);
-    }
+    setTasks([...tasks, task]);
   };
 
   const deleteTask = (taskIndex) => {
@@ -36,20 +26,22 @@ const Home = () => {
     setTasks(updatedTasks);
   };
 
-  const editTask = (taskIndex) => {
-    const task = tasks[taskIndex];
-    setTaskToEdit({ ...task, index: taskIndex });
+  const updateTask = (taskIndex, updatedTask) => {
+    const updatedTasks = tasks.map((task, index) =>
+      index === taskIndex ? updatedTask : task
+    );
+    setTasks(updatedTasks);
   };
 
   return (
     <div className={styles.container}>
       <h2>Task List</h2>
-      <TaskForm onAddTask={addTask} taskToEdit={taskToEdit} />
+      <TaskForm onAddTask={addTask} />
       <TaskFilter onFilterChange={(filters) => {}} />
       <TaskList
         tasks={tasks}
         onDeleteTask={deleteTask}
-        onEditTask={editTask}
+        onUpdateTask={updateTask}
       />
     </div>
   );

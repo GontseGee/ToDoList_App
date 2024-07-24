@@ -1,9 +1,8 @@
 export const setToLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
-  };
-  
-  export const getFromLocalStorage = (key) => {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
-  };
-  
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const getFromLocalStorage = (key) => {
+  const storedValue = localStorage.getItem(key);
+  return storedValue ? JSON.parse(storedValue) : null;
+};
