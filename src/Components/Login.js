@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
     if (storedUser && storedUser.username === username && storedUser.password === password) {
       alert('Login successful');
       onLogin(true);
-      navigate('/home'); // Navigate to home page upon successful login
+      navigate('/home'); 
     } else {
       alert('Invalid credentials');
     }

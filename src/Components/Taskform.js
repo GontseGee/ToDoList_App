@@ -1,58 +1,65 @@
 import React, { useState } from 'react';
 
-function TaskForm({ addTask }) {
+const TaskForm = ({ onAddTask }) => {
   const [taskName, setTaskName] = useState('');
-  const [taskDefinition, setTaskDefinition] = useState('');
-  const [taskPriority, setTaskPriority] = useState('Medium');
+  const [taskPriority, setTaskPriority] = useState('Low');
   const [taskDueDate, setTaskDueDate] = useState('');
+  const [taskStatus, setTaskStatus] = useState('Incomplete');
+  const [taskDescription, setTaskDescription] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!taskName) return; 
     const newTask = {
-      id: Date.now(), 
       name: taskName,
-      definition: taskDefinition,
       priority: taskPriority,
       dueDate: taskDueDate,
-      status: 'Incomplete',
+      status: taskStatus,
+      description: taskDescription,
     };
-    addTask(newTask);
+    onAddTask(newTask);
+   
     setTaskName('');
-    setTaskDefinition('');
-    setTaskPriority('Medium');
+    setTaskPriority('Low');
     setTaskDueDate('');
+    setTaskStatus('Incomplete');
+    setTaskDescription('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Task Name:
-        <input type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Task Definition:
-        <input type="text" value={taskDefinition} onChange={(e) => setTaskDefinition(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Priority:
-        <select value={taskPriority} onChange={(e) => setTaskPriority(e.target.value)}>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        Due Date:
-        <input type="date" value={taskDueDate} onChange={(e) => setTaskDueDate(e.target.value)} />
-      </label>
-      <br />
+      <input
+        type="text"
+        value={taskName}
+        onChange={(e) => setTaskName(e.target.value)}
+        placeholder="Task Name"
+        required
+      />
+      <input
+        type="text"
+        value={taskDescription}
+        onChange={(e) => setTaskDescription(e.target.value)}
+        placeholder="Task Description"
+        required
+      />
+      <select value={taskPriority} onChange={(e) => setTaskPriority(e.target.value)}>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <input
+        type="date"
+        value={taskDueDate}
+        onChange={(e) => setTaskDueDate(e.target.value)}
+        required
+      />
+      <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)}>
+        <option value="Incomplete">Incomplete</option>
+        <option value="Complete">Complete</option>
+      </select>
       <button type="submit">Add Task</button>
     </form>
   );
-}
+};
 
 export default TaskForm;
-

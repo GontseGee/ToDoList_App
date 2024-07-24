@@ -1,28 +1,23 @@
 import React from 'react';
 
-function TaskList({ tasks, updateTask, deleteTask }) {
-  const handleUpdate = (taskId) => {
-
-  };
-
+const TaskList = ({ tasks, onDeleteTask, onUpdateTask }) => {
   return (
     <div>
-      <h3>Task List</h3>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <h4>{task.name}</h4>
-            <p>{task.definition}</p>
-            <p>Priority: {task.priority}</p>
-            <p>Status: {task.status}</p>
-            <p>Due Date: {task.dueDate}</p>
-            <button onClick={() => handleUpdate(task.id)}>Update</button>
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {tasks.map((task, index) => (
+        <div key={index}>
+          <h3>{task.name}</h3>
+          <p><strong>Description:</strong> {task.description}</p>
+          <p><strong>Due Date:</strong> {task.dueDate}</p>
+          <p><strong>Priority:</strong> {task.priority}</p>
+          <p><strong>Status:</strong> {task.status}</p>
+          <button onClick={() => onDeleteTask(index)}>Delete</button>
+          <button onClick={() => onUpdateTask(index, { ...task, status: task.status === 'Complete' ? 'Incomplete' : 'Complete' })}>
+            {task.status === 'Complete' ? 'Undo' : 'Complete'}
+          </button>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default TaskList;

@@ -6,13 +6,13 @@ import { setToLocalStorage } from '../LocalStorage';
 import  styles from './Registration.module.css';
 
 const Registration = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+ 
+  const [Username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegistration = (e) => {
     e.preventDefault();
-    const userDetails = { username, email, password };
+    const userDetails = {  Username, password };
     setToLocalStorage('user', userDetails);
     alert('Registration successful');
   };
@@ -21,23 +21,14 @@ const Registration = () => {
     <div className={styles.container}>
       <h2>Create Account</h2>
       <form onSubmit={handleRegistration}>
+        
         <div>
-          <label>Name</label>
+          <label>Username</label>
           <input
             type="text"
-            value={username}
+            value={Username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Name"
-            required
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder="Username"
             required
           />
         </div>
