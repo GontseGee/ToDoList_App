@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { getFromLocalStorage } from '../LocalStorage';
+import { getFromLocalStorage, setToLocalStorage } from '../LocalStorage';
 import {Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const Login = ({ onLogin }) => {
-  const [email,setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -15,7 +15,8 @@ const Login = ({ onLogin }) => {
     if (storedUser && storedUser.username === username && storedUser.password === password) {
       alert('Login successful');
       onLogin(true);
-      navigate('/home'); 
+      setToLocalStorage('isLoggedIn', 'true'); 
+      navigate('/home');
     } else {
       alert('Invalid credentials');
     }
@@ -37,12 +38,12 @@ const Login = ({ onLogin }) => {
         </div>
         <div>
           <label>Email</label>
-          <input 
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder='email'
-          required
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
           />
         </div>
         <div>

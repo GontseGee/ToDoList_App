@@ -29,13 +29,13 @@ const Profile = () => {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'High':
-        return 'red'; 
+        return  '#ff6666';
       case 'Medium':
-        return 'orange'; 
+        return '#ffcc66'; 
       case 'Low':
-        return 'green'; // or any color you use for low priority
+        return '#66b3ff'; 
       default:
-        return 'gray'; // default color if priority is unknown
+        return '#e0e0e0'; 
     }
   };
 
@@ -61,14 +61,13 @@ const Profile = () => {
       </div>
       <div className={styles.profileInfo}>
         <p><strong>Username:</strong> {profile.username}</p>
-        <p><strong>Email:</strong> {profile.email}</p>
       </div>
       <div className={styles.completedTasks}>
         <h3>Completed Tasks</h3>
         {completedTasks.length > 0 ? (
           <ul>
             {completedTasks.map((task, index) => (
-              <li key={index} className={styles.taskCard} style={{ borderLeft: `5px solid ${getPriorityColor(task.priority)}` }}>
+              <li key={index} className={styles.taskCard} style={{ backgroundColor: getPriorityColor(task.priority) }}>
                 <p><strong>Task:</strong> {task.name}</p>
                 <p><strong>Description:</strong> {task.description}</p>
                 <p><strong>Due Date:</strong> {task.dueDate}</p>

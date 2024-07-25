@@ -8,11 +8,13 @@ import styles from './Home.module.css';
 const Home = () => {
   const [tasks, setTasks] = useState([]);
 
+  
   useEffect(() => {
     const storedTasks = getFromLocalStorage('tasks') || [];
     setTasks(storedTasks);
   }, []);
 
+  
   useEffect(() => {
     setToLocalStorage('tasks', tasks);
   }, [tasks]);
